@@ -23,10 +23,11 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app['debug'] = true;
 $app->boot();
 $app->post('/update', function (Request $request) use ($app) {
-    $newstatus = (int)$request->get('status');
+    $newstatus = (int)$request->getContent();
+    var_dump($newstatus);
     if ($newstatus>=0.5)
         file_put_contents(__DIR__.'/../upload/state',"besetzt");
-    elseif ($newstatus===0)
+    elseif ($newstatus<0.5)
         unlink(__DIR__.'/../upload/state');
     return $app['twig']->render('state.twig', array());
 });
