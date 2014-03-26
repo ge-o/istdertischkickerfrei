@@ -20,11 +20,10 @@ $app['security.firewalls'] = array(
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/views',
 ));
-$app['debug'] = true;
+$app['debug'] = false;
 $app->boot();
 $app->post('/update', function (Request $request) use ($app) {
-    $newstatus = (int)$request->getContent();
-    var_dump($newstatus);
+    $newstatus = (float)$request->getContent();
     if ($newstatus>=0.5)
         file_put_contents(__DIR__.'/../upload/state',"besetzt");
     elseif ($newstatus<0.5)
