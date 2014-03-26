@@ -22,9 +22,9 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 $app['debug'] = true;
 $app->boot();
-$app->post('/state', function (Request $request) use ($app) {
-    $newstatus = $request->get('status');
-    if ($newstatus===1)
+$app->post('/update', function (Request $request) use ($app) {
+    $newstatus = (int)$request->get('status');
+    if ($newstatus>==0.5)
         file_put_contents(__DIR__.'/../upload/state',"besetzt");
     elseif ($newstatus===0)
         unlink(__DIR__.'/../upload/state');
