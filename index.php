@@ -21,7 +21,7 @@
             margin: 20px auto 10px;
             color:black;
             font-family: Courier,sans-serif;
-            width:800px;
+            width:300px;
         }
     </style>
 </head>
