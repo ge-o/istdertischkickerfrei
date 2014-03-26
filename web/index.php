@@ -32,7 +32,7 @@ $app->get('/', function () use ($app) {
         $state = false;
     else
         $state = true;
-    $last_update = filemtime($path);
+    $last_update = file_get_contents(__DIR__.'/../upload/last_request');
     return $app['twig']->render('index.twig', array('state'=>$state,'last_update'=>$last_update));
 });
 
