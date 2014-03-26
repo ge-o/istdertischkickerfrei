@@ -3,4 +3,5 @@
         <h1>Ist der Tischkicker im Startplatz gerade frei?</h1>
         <h2>{%  if state %}JA!{% else %}Leider nein....{% endif %}</h2>
         <p>beta test, muss nicht stimmen</p>
+        <p class="small">Letzte Änderung: {{ last_update|date('d.m.Y H:i:s') }}</p>
 {% endblock %}

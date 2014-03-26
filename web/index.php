@@ -37,7 +37,8 @@ $app->get('/', function () use ($app) {
         $state = false;
     else
         $state = true;
-    return $app['twig']->render('index.twig', array('state'=>$state));
+    $last_update = filemtime($path);
+    return $app['twig']->render('index.twig', array('state'=>$state,'last_update'=>$last_update));
 });
 
 $app->run();
