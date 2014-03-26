@@ -5,18 +5,6 @@ use Symfony\Component\HttpFoundation\Response;
 require_once __DIR__ . '/../vendor/autoload.php';
 $app = new Silex\Application();
 
-/*$app->register(new Silex\Provider\SecurityServiceProvider());
-$app['security.firewalls'] = array(
-    'test' => array(
-        'pattern' => '^/',
-        'http' => true,
-        'users' => array(
-            // raw password is foo
-            'admin' => array('ROLE_ADMIN', 'fvyIsSwrRpGbHq7GRleUGShbujQhNmpGaASDjd6vTDl0Xe1Ck+yB/z1kE3816ekvWJLwiXAfYy0kAiVJs01v3g=='),
-            'golfpost' => array('ROLE_ADMIN', 'wmshpmVJRIEbXcbEHD7TpdKQvn/o5UbpWhd/BXPk9sXEViucjcf50YzbhV2piOhrLKTHqaKp9oUcNNS2vlew9Q=='),
-        ),
-    ),
-);*/
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/views',
 ));
