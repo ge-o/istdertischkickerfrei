@@ -11,11 +11,18 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app['debug'] = false;
 $app->boot();
 $app->post('/update', function (Request $request) use ($app) {
-    $newstatus = (float)$request->getContent();
-    if ($newstatus>=0.5)
-        file_put_contents(__DIR__.'/../upload/state',"besetzt");
-    elseif ($newstatus<0.5)
-        unlink(__DIR__.'/../upload/state');
+    $status_path = __DIR__.'/../upload/state';
+    $request_time = time();
+    $last_update = filemtime($status_path);
+    file_put_contents(__DIR__.'/../upload/last_request',$request_time);
+    if($request_time-$last_update > 30)
+    {
+        $newstatus = (float)$request->getContent();
+        if ($newstatus>=0.5)
+            file_put_contents($status_path,"besetzt");
+        elseif ($newstatus<0.5)
+            unlink($status_path);
+    }
     return $app['twig']->render('state.twig', array());
 });
 
