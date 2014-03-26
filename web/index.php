@@ -1,9 +1,40 @@
+<html>
+<head>
+    <title>IST DER TISCHKICKER FREI?</title>
+    <style>
+        h1{
+            font-size: 20px;
+            margin: 300px auto 10px;
+            color:black;
+            font-family: Courier,sans-serif;
+            width:600px;
+        }
+        h2{
+            font-size: 60px;
+            margin: 20px auto 10px;
+            color:black;
+            font-family: Courier,sans-serif;
+            width:500px;
+        }
+        p{
+            font-size: 30px;
+            margin: 20px auto 10px;
+            color:black;
+            font-family: Courier,sans-serif;
+            width:800px;
+        }
+    </style>
+</head>
+<body>
+<h1>Ist der Tischkicker im Startplatz gerade frei?</h1>
+        <h2>Weiss nicht</h2>
+        <p>Zur Zeit musst Du noch nachschauen gehen...</p>
+</body>
+</html>
 <?php
-
-use Golfpost\GolfServiceProvider;
+die();
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Encoder\PlaintextPasswordEncoder;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 $app = new Silex\Application();
@@ -23,7 +54,7 @@ $app['security.firewalls'] = array(
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/views',
 ));
-$app['debug'] = false;
+$app['debug'] = true;
 $app->boot();
 
 $app->post('/state', function (Request $request) use ($app) {
@@ -36,10 +67,11 @@ $app->post('/state', function (Request $request) use ($app) {
 });
 
 $app->get('/', function () use ($app) {
-    $path = __DIR__.'/../upload/state';
+/*    $path = __DIR__.'/../upload/state';
     if(file_exists($path))
         $state = true;
     else
-        $state = false;
+        $state = false;*/
+$state = true;
     return $app['twig']->render('index.twig', array('state'=>$state));
 });
