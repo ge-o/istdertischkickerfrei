@@ -1,4 +1,4 @@
-service-tools
+IST DER TISCHKICKER FREI
 =============
 
-Tools for deployment etc.
+Dies ist ein Service, der den Status des Kicker im STARTPLATZ anzeigt: http://istdertischkickerfrei.startplatz.de/
