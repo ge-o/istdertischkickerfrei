@@ -12,7 +12,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/views',
 ));
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => $base_dir. 'kicker.log',
+    'monolog.logfile' => __DIR__ . '/../upload/'. 'kicker.log',
 ));
 $app['debug'] = false;
 
