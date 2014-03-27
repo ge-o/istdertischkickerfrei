@@ -1,3 +1,6 @@
 web/upload
 vendor/
 composer.phar
+upload/last_request
+upload/state
+upload/kicker.log
