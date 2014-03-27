@@ -32,6 +32,7 @@ $app->post('/update4711', function (Request $request,$base_dir) use ($app) {
 
 $app->get('/', function ($base_dir) use ($app) {
     $state = (boolean)file_get_contents($base_dir.'state');
+    var_dump($state);
     $last_update = file_get_contents($base_dir.'last_request');
     return $app['twig']->render('index.twig', array('state'=>$state,'last_update'=>$last_update));
 });
