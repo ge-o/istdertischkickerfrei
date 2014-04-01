@@ -17,6 +17,9 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 $app['debug'] = false;
 
 $app->boot();
+$app->post('/update', function (Request $request,$base_dir) use ($app) {
+    return "";
+});
 $app->post('/update4711', function (Request $request,$base_dir) use ($app) {
     $newstatus = (float)$request->getContent();
     $app['monolog']->addInfo( $newstatus );
