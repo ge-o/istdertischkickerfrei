@@ -34,7 +34,7 @@ $app->post('/update4711', function (Request $request,$base_dir) use ($app) {
     $newstatus = (float)$request->getContent();
     $app['monolog']->addInfo( $newstatus );
 
-    $sql = "INSERT INTO log SET amount = ?,track_time = NOW()";
+    $sql = "INSERT INTO log SET value = ?,track_time = NOW()";
     $app['db']->executeInsert($sql, array($newstatus));
 
     $status_path = $base_dir.'state';
