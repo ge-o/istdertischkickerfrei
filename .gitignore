@@ -4,3 +4,4 @@ composer.phar
 upload/last_request
 upload/state
 upload/kicker.log
+parameter.inc.php

@@ -1,0 +1,4 @@
+<?php
+$dbname = 'kicker';
+$user = 'user';
+$pw = '';

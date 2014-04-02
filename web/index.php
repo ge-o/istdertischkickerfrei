@@ -3,11 +3,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../parameter.inc.php';
 
 $app = new Silex\Application();
 $base_dir = __DIR__ . '/../upload/';
 $app['controllers']->value('base_dir', $base_dir);
-
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+    'dbs.options' => array(
+        'driver' => 'pdo_mysql',
+        'host' => 'localhost',
+        'dbname' => $dbname,
+        'user' => $user,
+        'password' => $pw,
+        'charset' => 'utf8',
+    )
+));
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/views',
 ));
@@ -23,6 +33,10 @@ $app->post('/update', function (Request $request,$base_dir) use ($app) {
 $app->post('/update4711', function (Request $request,$base_dir) use ($app) {
     $newstatus = (float)$request->getContent();
     $app['monolog']->addInfo( $newstatus );
+
+    $sql = "INSERT INTO log SET amount = ?,track_time = NOW()";
+    $app['db']->executeInsert($sql, array($newstatus));
+
     $status_path = $base_dir.'state';
     $request_time = time();
     file_put_contents($base_dir.'last_request',$request_time);
