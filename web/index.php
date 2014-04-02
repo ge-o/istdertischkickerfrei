@@ -9,7 +9,7 @@ $app = new Silex\Application();
 $base_dir = __DIR__ . '/../upload/';
 $app['controllers']->value('base_dir', $base_dir);
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'dbs.options' => array(
+    'db.options' => array(
         'driver' => 'pdo_mysql',
         'host' => 'localhost',
         'dbname' => $dbname,
